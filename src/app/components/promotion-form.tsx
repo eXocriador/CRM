@@ -39,7 +39,7 @@ export default function PromotionForm({
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: createPromotion,
+    mutationFn: (data: Omit<Promotion, 'id'>) => createPromotion(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['promotions', companyId],
